@@ -14,8 +14,9 @@ class ApplicationController < Sinatra::Base
     contact.to_json
   end
   
-  get "/contacts/:name" do
-    contacts = Contact.where(name: params[:name])
+  get "/contacts/:name" do 
+
+    contacts = Contact.where(name:params[:name])
     contacts.to_json
   end
   post "/contacts" do
@@ -33,11 +34,13 @@ class ApplicationController < Sinatra::Base
   patch "/contacts/:id" do 
     contact = Contact.find(params[:id])
     contact.update(
-      name: params[:name],
+        name: params[:name],
       phone: params[:phone],
       email: params[:email],
+      company_name:params[:company_name],
       company_id: params[:company_id],
-      title: params[:title]
+      title: params[:title],
+      photo: params[:photo]
     )
     contact.to_json
   end
